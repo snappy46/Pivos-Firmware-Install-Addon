@@ -52,6 +52,15 @@ msgctxt "#32009"
 msgid "All the required steps have been completed successfully.  \n\nPress OK to install selected firmware and restart device."
 msgstr ""
 
+msgctxt "#32010"
+msgid "Firmware URL Address:"
+msgstr ""
+
+msgctxt "#32011"
+msgid "Factory Reset:"
+msgstr ""
+
+
 # Error messages
 
 msgctxt "#32020"
