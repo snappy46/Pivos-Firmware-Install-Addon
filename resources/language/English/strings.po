@@ -1,0 +1,79 @@
+# Kodi Media Center language file
+# Addon Name: Firmware install
+# Addon id: script.module.firmware.update
+# Addon Provider: snappy46
+msgid ""
+msgstr ""
+"Project-Id-Version: Kodi Addons\n"
+"Report-Msgid-Bugs-To: alanwww1@xbmc.org\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kodi Translation Team\n"
+"Language-Team: English (http://www.transifex.com/projects/p/xbmc-addons/language/en/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "#32001"
+msgid "Choose firmware to install"
+msgstr ""
+
+msgctxt "#32002"
+msgid "Firmware Update"
+msgstr ""
+
+msgctxt "#32003"
+msgid "     Revision Date: "
+msgstr ""
+
+msgctxt "#32004"
+msgid "Firmware download"
+msgstr ""
+
+msgctxt "#32005"
+msgid "Downloading File"
+msgstr ""
+
+msgctxt "#32006"
+msgid "\n\n Install this firmware?"
+msgstr ""
+
+msgctxt "#32007"
+msgid "Confirm firmware update"
+msgstr ""
+
+msgctxt "#32008"
+msgid "This will delete all your current kodi setup and data.  \n\nAre you sure you wish to continue?"
+msgstr ""
+
+msgctxt "#32009"
+msgid "All the required steps have been completed successfully.  \n\nPress OK to install selected firmware and restart device."
+msgstr ""
+
+# Error messages
+
+msgctxt "#32020"
+msgid "Firmware list download failed.\n\nMake sure your device is connected to the internet."
+msgstr ""
+
+msgctxt "#32021"
+msgid "Download canceled"
+msgstr ""
+
+msgctxt "#32022"
+msgid "Unable to make cache directory"
+msgstr ""
+
+msgctxt "#32023"
+msgid "Error Firmware install process could not be continued"
+msgstr ""
+
+msgctxt "#32024"
+msgid "Unable to create cache mount"
+msgstr ""
+
+
+
+
