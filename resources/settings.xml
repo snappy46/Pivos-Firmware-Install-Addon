@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
-        <setting label="32010" type="text" id="urlAddress" default="http://update.pivosgroup.com/android/mx/update.xml"/>
+    <setting label="32010" type="select" id="device" lvalues="32015|32012|32013|32014" />
 	<setting label="32011" type="bool" id="factoryReset" default="false"/>
 </settings>

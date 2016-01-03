@@ -53,11 +53,27 @@ msgid "All the required steps have been completed successfully.  \n\nPress OK to
 msgstr ""
 
 msgctxt "#32010"
-msgid "Firmware URL Address:"
+msgid "Pivos device selected:"
 msgstr ""
 
 msgctxt "#32011"
 msgid "Factory Reset:"
+msgstr ""
+
+msgctxt "#32012"
+msgid "XIOS XS"
+msgstr ""
+
+msgctxt "#32013"
+msgid "XIOS DS M3"
+msgstr ""
+
+msgctxt "#32014"
+msgid "XIOS DS M1"
+msgstr ""
+
+msgctxt "#32015"
+msgid "None"
 msgstr ""
 
 
@@ -83,6 +99,9 @@ msgctxt "#32024"
 msgid "Unable to create cache mount"
 msgstr ""
 
+msgctxt "#32025"
+msgid "Please select a device in the configuration menu (settings)."
+msgstr ""
 
 
 

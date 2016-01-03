@@ -3,7 +3,6 @@ import urllib
 from xml.dom import minidom
 import xbmcgui
 import os
-import subprocess
 import hashlib
 from xbmcaddon import Addon
 
@@ -114,7 +113,7 @@ def recoverCommand():
         executeRecovery = dialog.yesno(langString(32002), langString(32009))
         if (executeRecovery):
             shellCommand = 'reboot recovery'
-        #os.system(shellCommand)
+            os.system(shellCommand)
 
     
 def md5(fname):
@@ -137,32 +136,27 @@ def firmwareUpdate(message):
 
         if (runscript):
             shellCommands()
-            #DownloaderClass(linkArray[ret], '/tmp/cache/update.img')
-            DownloaderClass('http://ftp.postgresql.org/pub/source/v9.2.3/postgresql-9.2.3.tar.gz',
-                            '/tmp/cache/update.img')
-            #if md5('/tmp/cache/update.img') <> md5Array[ret]:
-            if md5('/tmp/cache/update.img') <> '557d330b0ad12461ea83b7f877fe00b5':
+            DownloaderClass(linkArray[ret], '/tmp/cache/update.img')
+            if md5('/tmp/cache/update.img') <> md5Array[ret]:
                 md5ErrorMessage()
-            #messageOK("allgood")
             recoverCommand()
         else: quit()
     else: quit()
 
 
 def checkHardware():
-    # Check hardware to determine correct or provide by setting file if set.
-    # This does not currently work on the Pivos XS; maybe subprocess lib does not exist on the XS???
-    #hardware = subprocess.check_output(['dmesg | grep Machine'])
-    #hardware = subprocess.check_output('dmesg | grep Machine')
-    #if ((Addon().getSetting('urlAddress')).isspace()):
-        #if hardware.__contains__('Meson6'):
-            #return 'http://update.pivosgroup.com/android/mx/update.xml'
-        #elif hardware.__contains__('MESON3'):
-            #return 'http://update.pivosgroup.com/android/mx/update.xml'
-        #elif hardware.__contains__('MESON-M1'):
-            #return 'http://update.pivosgroup.com/android/mx/update.xml'
-    #else:
-    return Addon().getSetting('urlAddress')
+    # Check hardware to determine correct firmware list link
+    device = Addon().getSetting('device')
+    if device == '0':
+        messageOK(langString(32025) + device)
+        quit()
+    elif device == '1':
+        return 'http://update.pivosgroup.com/linux/mx/update.xml'
+    elif device == '2':
+        return 'http://update.pivosgroup.com/linux/m3/update.xml'
+    else:
+        return 'http://update.pivosgroup.com/linux/m1/update.xml'
+
 
 # firmware update.xml URL
 imageListLink = checkHardware()
