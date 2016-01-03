@@ -113,7 +113,7 @@ def recoverCommand():
         executeRecovery = dialog.yesno(langString(32002), langString(32009))
         if (executeRecovery):
             shellCommand = 'reboot recovery'
-            os.system(shellCommand)
+            #os.system(shellCommand)
 
     
 def md5(fname):
@@ -147,15 +147,15 @@ def firmwareUpdate(message):
 def checkHardware():
     # Check hardware to determine correct firmware list link
     device = Addon().getSetting('device')
-    if device == '0':
-        messageOK(langString(32025) + device)
-        quit()
-    elif device == '1':
+    if device == '1':
         return 'http://update.pivosgroup.com/linux/mx/update.xml'
     elif device == '2':
         return 'http://update.pivosgroup.com/linux/m3/update.xml'
-    else:
+    elif device == '3':
         return 'http://update.pivosgroup.com/linux/m1/update.xml'
+    else:
+        messageOK(langString(32025) + device)
+        quit()
 
 
 # firmware update.xml URL

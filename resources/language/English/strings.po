@@ -49,7 +49,7 @@ msgid "This will delete all your current kodi setup and data.  \n\nAre you sure 
 msgstr ""
 
 msgctxt "#32009"
-msgid "All the required steps have been completed successfully.  \n\nPress OK to install selected firmware and restart device."
+msgid "All the required steps have been completed successfully.  \n\nPress Yes to install selected firmware and restart device."
 msgstr ""
 
 msgctxt "#32010"
