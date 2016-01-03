@@ -154,7 +154,7 @@ def checkHardware():
     elif device == '3':
         return 'http://update.pivosgroup.com/linux/m1/update.xml'
     else:
-        messageOK(langString(32025) + device)
+        messageOK(langString(32025))
         quit()
 
 
