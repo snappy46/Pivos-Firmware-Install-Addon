@@ -5,6 +5,7 @@ import xbmcgui
 import os
 import hashlib
 from xbmcaddon import Addon
+import subprocess
 
 
 firmwareArray = []
@@ -84,6 +85,17 @@ def shellErrorMessage(message):
     quit()
 
 
+def mountCheck():
+    # This function will check if mount exist or not. return true if mount does not exist
+    p = subprocess.Popen(['df', '-h'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    p1, err = p.communicate()
+    pattern = p1
+    if pattern.find('/tmp/cache') != -1:
+        return False
+    else:
+        return True
+
+
 def shellCommands():
     # issue shell command to create /tmp/cache directory and mount /dev/cache
     shellCommand = 'mkdir -p /tmp/cache || exit 1'
@@ -91,16 +103,17 @@ def shellCommands():
     if result != 0:
         messageOK(langString(32022))
         quit()
-    shellCommand = 'mount -t ext4 /dev/cache /tmp/cache/ || exit 1'
-    result = os.system(shellCommand)
-    if result != 0:
-        messageOK(langString(32024))
-        quit()
+    if (mountCheck()):
+        shellCommand = 'mount -t ext4 /dev/cache /tmp/cache/ || exit 1'
+        result = os.system(shellCommand)
+        if result != 0:
+            messageOK(langString(32024))
+            quit()
 
 
 def recoverCommand():
     # issue shell command to install selected firmware and reset to factory settings if specify in the setting file
-    if Addon().getSetting('factoryReset'):
+    if (Addon().getSetting('factoryReset') == 'true'):
         shellCommand = 'echo -e "--update_package=/cache/update.img\n--wipe_cache\n--wipe_data" > /tmp/cache/recovery/command || exit 1'
     else:
         shellCommand = 'echo -e "--update_package=/cache/update.img\n--wipe_cache" > /tmp/cache/recovery/command || exit 1'
