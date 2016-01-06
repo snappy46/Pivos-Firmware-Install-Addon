@@ -67,6 +67,7 @@ def _pbhook(numblocks, blocksize, filesize, url=None, dp=None):
     except:
         percent = 100
         dp.update(percent)
+        dp.close()
     if dp.iscanceled():
         dp.close()
         os.remove('/home/marcel/update.img')
@@ -85,38 +86,12 @@ def shellErrorMessage(message):
     quit()
 
 
-def mountCheck():
-    # This function will check if mount exist or not. return true if mount does not exist
-    p = subprocess.Popen(['df', '-h'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    p1, err = p.communicate()
-    pattern = p1
-    if pattern.find('/tmp/cache') != -1:
-        return False
-    else:
-        return True
-
-
-def shellCommands():
-    # issue shell command to create /tmp/cache directory and mount /dev/cache
-    shellCommand = 'mkdir -p /tmp/cache || exit 1'
-    result = os.system(shellCommand)
-    if result != 0:
-        messageOK(langString(32022))
-        quit()
-    if (mountCheck()):
-        shellCommand = 'mount -t ext4 /dev/cache /tmp/cache/ || exit 1'
-        result = os.system(shellCommand)
-        if result != 0:
-            messageOK(langString(32024))
-            quit()
-
-
 def recoverCommand():
     # issue shell command to install selected firmware and reset to factory settings if specify in the setting file
     if (Addon().getSetting('factoryReset') == 'true'):
-        shellCommand = 'echo -e "--update_package=/cache/update.img\n--wipe_cache\n--wipe_data" > /tmp/cache/recovery/command || exit 1'
+        shellCommand = 'echo -e "--update_package=/cache/update.img\n--wipe_cache\n--wipe_data" > /recovery/recovery/command || exit 1'
     else:
-        shellCommand = 'echo -e "--update_package=/cache/update.img\n--wipe_cache" > /tmp/cache/recovery/command || exit 1'
+        shellCommand = 'echo -e "--update_package=/cache/update.img\n--wipe_cache" > /recovery/recovery/command || exit 1'
     result = os.system(shellCommand)
     if result != 0:
         messageOK(langString(32023))
@@ -126,15 +101,31 @@ def recoverCommand():
         executeRecovery = dialog.yesno(langString(32002), langString(32009))
         if (executeRecovery):
             shellCommand = 'reboot recovery'
-            #os.system(shellCommand)
+            os.system(shellCommand)
 
     
 def md5(fname):
     # return md5 of the file fname
+    import time
+    dpMd5 = xbmcgui.DialogProgress()
+    message = "Checking file integrity..."
+    dpMd5.create("Percentage complete: ", message)
+    fileSize = os.path.getsize('/recovery/update.img')
+    stepSize = round(fileSize/409600)
+    percent = 0
+    count = 0
     hash = hashlib.md5()
     with open(fname, "rb") as f:
         for chunk in iter(lambda: f.read(4096), b""):
             hash.update(chunk)
+            dpMd5.update(percent)
+            count = count + 1
+            if count > stepSize and percent < 100:
+                percent += 1
+                count = 0
+    dpMd5.update(100, "File integrity check pass.")
+    time.sleep(2)
+    dpMd5.close()
     return hash.hexdigest()
 
 
@@ -148,9 +139,8 @@ def firmwareUpdate(message):
         runscript = dialog.yesno(langString(32007), langString(32008))
 
         if (runscript):
-            shellCommands()
-            DownloaderClass(linkArray[ret], '/tmp/cache/update.img')
-            if md5('/tmp/cache/update.img') <> md5Array[ret]:
+            DownloaderClass(linkArray[ret], '/recovery/update.img')
+            if md5('/recovery/update.img') <> md5Array[ret]:
                 md5ErrorMessage()
             recoverCommand()
         else: quit()
