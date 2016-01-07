@@ -5,8 +5,6 @@ import xbmcgui
 import os
 import hashlib
 from xbmcaddon import Addon
-import subprocess
-
 
 firmwareArray = []
 linkArray = []
@@ -48,7 +46,7 @@ def downloadFirmwareList(source):
             md5Array.append(basic.getAttribute('MD5'))
 
     except:
-        messageOK(langString(32020))
+        messageOK(langString(32030))
         quit()
 
 
@@ -71,12 +69,12 @@ def _pbhook(numblocks, blocksize, filesize, url=None, dp=None):
     if dp.iscanceled():
         dp.close()
         os.remove('/home/marcel/update.img')
-        messageOK(langString(32021))
+        messageOK(langString(32031))
 
 
 def md5ErrorMessage():
     # display error message
-    messageOK('Failed file integrity check')
+    messageOK(langString(32036))
     quit()
 
 
@@ -94,22 +92,20 @@ def recoverCommand():
         shellCommand = 'echo -e "--update_package=/cache/update.img\n--wipe_cache" > /recovery/recovery/command || exit 1'
     result = os.system(shellCommand)
     if result != 0:
-        messageOK(langString(32023))
+        messageOK(langString(32033))
         quit()
     else:
         dialog = xbmcgui.Dialog()
-        executeRecovery = dialog.yesno(langString(32002), langString(32009))
-        if (executeRecovery):
-            shellCommand = 'reboot recovery'
-            os.system(shellCommand)
+        dialog.notification(langString(32009), langString(32016), icon='', time=3000)
+        shellCommand = 'reboot recovery'
+        os.system(shellCommand)
 
     
 def md5(fname):
     # return md5 of the file fname
-    import time
     dpMd5 = xbmcgui.DialogProgress()
-    message = "Checking file integrity..."
-    dpMd5.create("Percentage complete: ", message)
+    message = langString(32017)
+    dpMd5.create(langString(32018), message)
     fileSize = os.path.getsize('/recovery/update.img')
     stepSize = round(fileSize/409600)
     percent = 0
@@ -123,8 +119,6 @@ def md5(fname):
             if count > stepSize and percent < 100:
                 percent += 1
                 count = 0
-    dpMd5.update(100, "File integrity check pass.")
-    time.sleep(2)
     dpMd5.close()
     return hash.hexdigest()
 
@@ -142,6 +136,9 @@ def firmwareUpdate(message):
             DownloaderClass(linkArray[ret], '/recovery/update.img')
             if md5('/recovery/update.img') <> md5Array[ret]:
                 md5ErrorMessage()
+            else:
+                dialog = xbmcgui.Dialog()
+                dialog.notification(langString(32019), langString(32020), icon='', time=3000)
             recoverCommand()
         else: quit()
     else: quit()
@@ -157,7 +154,7 @@ def checkHardware():
     elif device == '3':
         return 'http://update.pivosgroup.com/linux/m1/update.xml'
     else:
-        messageOK(langString(32025))
+        messageOK(langString(32035))
         quit()
 
 
