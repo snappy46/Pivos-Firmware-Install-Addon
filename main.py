@@ -68,7 +68,7 @@ def _pbhook(numblocks, blocksize, filesize, url=None, dp=None):
         dp.close()
     if dp.iscanceled():
         dp.close()
-        os.remove('/home/marcel/update.img')
+        os.remove('/recover/update.img')
         messageOK(langString(32031))
 
 
