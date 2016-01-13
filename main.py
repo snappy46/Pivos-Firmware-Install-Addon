@@ -85,11 +85,20 @@ def shellErrorMessage(message):
 
 
 def recoverCommand():
-    # issue shell command to install selected firmware and reset to factory settings if specify in the setting file
-    if (Addon().getSetting('factoryReset') == 'true'):
-        shellCommand = 'echo -e "--update_package=/cache/update.img\n--wipe_cache\n--wipe_data" > /recovery/recovery/command || exit 1'
+    # issue shell command to install selected firmware and reset to factory settings if specify in the setting file.
+    device = Addon().getSetting('device')
+    if device == '3':
+        if (Addon().getSetting('storage') == '0'): #Sdcard selected
+            storage = 'sdcard'
+        else:
+            storage = 'udisk'
     else:
-        shellCommand = 'echo -e "--update_package=/cache/update.img\n--wipe_cache" > /recovery/recovery/command || exit 1'
+        storage = 'cache'
+
+    if Addon().getSetting('factoryReset') == 'true':
+        shellCommand = 'echo -e "--update_package=/' + storage + '/update.img\n--wipe_cache\n--wipe_data" > /recovery/recovery/command || exit 1'
+    else:
+        shellCommand = 'echo -e "--update_package=/' + storage + '/update.img\n--wipe_cache" > /recovery/recovery/command || exit 1'
     result = os.system(shellCommand)
     if result != 0:
         messageOK(langString(32033))
@@ -100,7 +109,7 @@ def recoverCommand():
         shellCommand = 'reboot recovery'
         os.system(shellCommand)
 
-    
+
 def md5(fname):
     # return md5 of the file fname
     dpMd5 = xbmcgui.DialogProgress()
@@ -115,7 +124,7 @@ def md5(fname):
         for chunk in iter(lambda: f.read(4096), b""):
             hash.update(chunk)
             dpMd5.update(percent)
-            count = count + 1
+            count += 1
             if count > stepSize and percent < 100:
                 percent += 1
                 count = 0
@@ -136,6 +145,7 @@ def firmwareUpdate(message):
             DownloaderClass(linkArray[ret], '/recovery/update.img')
             if md5('/recovery/update.img') <> md5Array[ret]:
                 md5ErrorMessage()
+                pass
             else:
                 dialog = xbmcgui.Dialog()
                 dialog.notification(langString(32019), langString(32020), icon='', time=3000)
@@ -145,7 +155,7 @@ def firmwareUpdate(message):
 
 
 def checkHardware():
-    # Check hardware to determine correct firmware list link
+    # Check hardware to determine correct firmware list link and device
     device = Addon().getSetting('device')
     if device == '1':
         return 'http://update.pivosgroup.com/linux/mx/update.xml'
