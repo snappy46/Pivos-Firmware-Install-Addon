@@ -6,6 +6,7 @@ import os
 import hashlib
 from xbmcaddon import Addon
 
+
 firmwareArray = []
 linkArray = []
 md5Array = []
@@ -50,6 +51,18 @@ def downloadFirmwareList(source):
         quit()
 
 
+def firmwareDownloadLocation():
+    # return location to save the downloaded firmware and filename
+    device = Addon().getSetting('device')
+    if device == '3':
+        if Addon().getSetting('storage') == '0': #Sdcard selected
+            return mountLocation('/dev/cardblksd1') + '/update.img'
+        else:
+            return mountLocation('/dev/sda1') + '/update.img'
+    else:
+        return '/recovery/update.img'
+
+
 def DownloaderClass(url, dest):
     # download file and display progress in dialog progress window
     dp = xbmcgui.DialogProgress()
@@ -68,7 +81,7 @@ def _pbhook(numblocks, blocksize, filesize, url=None, dp=None):
         dp.close()
     if dp.iscanceled():
         dp.close()
-        os.remove('/recover/update.img')
+        os.remove(firmwareDownloadLocation())
         messageOK(langString(32031))
 
 
@@ -84,17 +97,27 @@ def shellErrorMessage(message):
     quit()
 
 
-def recoverCommand():
-    # issue shell command to install selected firmware and reset to factory settings if specify in the setting file.
+def firmwareLocationOnReboot():
+    # return the firmware location on reboot recovery
     device = Addon().getSetting('device')
     if device == '3':
-        if (Addon().getSetting('storage') == '0'): #Sdcard selected
-            storage = 'sdcard'
+        if Addon().getSetting('storage') == '0': #Sdcard selected
+            return 'sdcard'
         else:
-            storage = 'udisk'
+            return 'udisk'
     else:
-        storage = 'cache'
+        return 'cache'
 
+
+def mountLocation(dev):
+    # This function will return the mount location of dev
+    p = os.popen("df | grep '" + dev + "' | grep -oE '[^ ]+$'")
+    return p.read()
+
+
+def recoverCommand():
+    # issue shell command to install selected firmware and reset to factory settings if specify in the setting file.
+    storage = firmwareLocationOnReboot()
     if Addon().getSetting('factoryReset') == 'true':
         shellCommand = 'echo -e "--update_package=/' + storage + '/update.img\n--wipe_cache\n--wipe_data" > /recovery/recovery/command || exit 1'
     else:
@@ -107,7 +130,7 @@ def recoverCommand():
         dialog = xbmcgui.Dialog()
         dialog.notification(langString(32009), langString(32016), icon='', time=3000)
         shellCommand = 'reboot recovery'
-        os.system(shellCommand)
+      #  os.system(shellCommand)
 
 
 def md5(fname):
@@ -115,7 +138,7 @@ def md5(fname):
     dpMd5 = xbmcgui.DialogProgress()
     message = langString(32017)
     dpMd5.create(langString(32018), message)
-    fileSize = os.path.getsize('/recovery/update.img')
+    fileSize = os.path.getsize(fname)
     stepSize = round(fileSize/409600)
     percent = 0
     count = 0
@@ -142,8 +165,9 @@ def firmwareUpdate(message):
         runscript = dialog.yesno(langString(32007), langString(32008))
 
         if (runscript):
-            DownloaderClass(linkArray[ret], '/recovery/update.img')
-            if md5('/recovery/update.img') <> md5Array[ret]:
+            downloadFile = firmwareDownloadLocation()
+            DownloaderClass(linkArray[ret], downloadFile)
+            if md5(downloadFile) <> md5Array[ret]:
                 md5ErrorMessage()
                 pass
             else:

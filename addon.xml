@@ -11,7 +11,7 @@
 	<extension point="xbmc.addon.metadata">
 		<platform>all</platform>
 		<summary lang="en">Pivos XIOS firmware install</summary>
-		<description lang="en">This addon provide for automatic firmware update Pivos devices running TOFULinux OS.</description>
+		<description lang="en">This addon provide for automatic firmware update for Pivos devices running TOFULinux OS 080115 or later.</description>
 		<license>GNU General Public License, v2</license>
 		<language></language>
 		<forum></forum>

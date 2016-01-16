@@ -69,7 +69,7 @@ msgid "XIOS DS M3"
 msgstr ""
 
 msgctxt "#32014"
-msgid "XIOS DS M1"
+msgid "XIOS DS M1 *Experimental*"
 msgstr ""
 
 msgctxt "#32015"
@@ -105,6 +105,14 @@ msgid "SDCard"
 msgstr ""
 
 msgctxt "#32023"
+msgid "USB"
+msgstr ""
+
+msgctxt "#32024"
+msgid "Warning: Recommend the use of SDCard for external storage.  If you must use a USB device no other USB device then the one you plan on using to store the firmware download should be connected to your Pivos device."
+msgstr ""
+
+msgctxt "#32025"
 msgid "USB"
 msgstr ""
 

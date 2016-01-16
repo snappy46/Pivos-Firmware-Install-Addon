@@ -2,5 +2,6 @@
 <settings>
     <setting label="32010" type="select" id="device" lvalues="32015|32012|32013|32014" />
 	<setting label="32011" type="bool" id="factoryReset" default="false"/>
-    <setting label="32021" type="select" id="storage" lvalues="32022|32023" visible="eq(-2,XIOS DS M1)" enable="eq(-2,XIOS DS M1)" />
+    <setting label="32021" type="select" id="storage" lvalues="32022|32023" visible="eq(-2,XIOS DS M1 *Experimental*)" enable="eq(-2,XIOS DS M1 *Experimental*))" />
+    <setting label="32024" type="text" id="warning" default="" visible="eq(-3,XIOS DS M1 *Experimental*)" enable="eq(-3,XIOS DS M1 *Experimental*))" />
 </settings>
