@@ -139,7 +139,7 @@ msgid "Unable to create cache mount"
 msgstr ""
 
 msgctxt "#32035"
-msgid "Please select a device in the configuration menu (settings)."
+msgid "Please select a device in the configuration menu (settings) before using."
 msgstr ""
 
 msgctxt "#32036"
