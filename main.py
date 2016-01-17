@@ -32,6 +32,17 @@ def findChildNodeByName(parent, name):
     return None
 
 
+def findStorageBasedOnDevice():
+    # Return storage based on the device selected
+    device = Addon().getSetting('device')
+    if device == '1':
+        return Addon().getSetting('XSstorage')
+    elif device == '2':
+        return Addon().getSetting('DSM3storage')
+    elif device == '3':
+        return Addon().getSetting('DSM1storage')
+
+
 def downloadFirmwareList(source):
     # Download firmware list and store relevant data in arrays
     try:
@@ -53,14 +64,13 @@ def downloadFirmwareList(source):
 
 def firmwareDownloadLocation():
     # return location to save the downloaded firmware and filename
-    device = Addon().getSetting('device')
-    if device == '3':
-        if Addon().getSetting('storage') == '0': #Sdcard selected
-            return mountLocation('/dev/cardblksd1') + '/update.img'
-        else:
-            return mountLocation('/dev/sda1') + '/update.img'
-    else:
+    downloadLocation = findStorageBasedOnDevice()
+    if downloadLocation == '0': #cache selected
         return '/recovery/update.img'
+    elif downloadLocation == '1': #Sdcard selected
+        return mountLocation('/dev/cardblksd1') + '/update.img'
+    else:
+        return mountLocation('/dev/sda1') + '/update.img' #USB Storage
 
 
 def DownloaderClass(url, dest):
@@ -99,20 +109,19 @@ def shellErrorMessage(message):
 
 def firmwareLocationOnReboot():
     # return the firmware location on reboot recovery
-    device = Addon().getSetting('device')
-    if device == '3':
-        if Addon().getSetting('storage') == '0': #Sdcard selected
-            return 'sdcard'
-        else:
-            return 'udisk'
-    else:
+    rebootFirmwareLocation = findStorageBasedOnDevice()
+    if rebootFirmwareLocation == '0': #cache selected
         return 'cache'
+    elif rebootFirmwareLocation == '1': #Sdcard selected
+        return 'sdcard'
+    else:
+        return 'udisk'
 
 
 def mountLocation(dev):
     # This function will return the mount location of dev
     p = os.popen("df | grep '" + dev + "' | grep -oE '[^ ]+$'")
-    return p.read()
+    return p.read().replace("\n", "")
 
 
 def recoverCommand():
@@ -130,7 +139,7 @@ def recoverCommand():
         dialog = xbmcgui.Dialog()
         dialog.notification(langString(32009), langString(32016), icon='', time=3000)
         shellCommand = 'reboot recovery'
-      #  os.system(shellCommand)
+        os.system(shellCommand)
 
 
 def md5(fname):
@@ -166,6 +175,7 @@ def firmwareUpdate(message):
 
         if (runscript):
             downloadFile = firmwareDownloadLocation()
+            messageOK(downloadFile)
             DownloaderClass(linkArray[ret], downloadFile)
             if md5(downloadFile) <> md5Array[ret]:
                 md5ErrorMessage()

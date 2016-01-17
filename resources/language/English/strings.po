@@ -69,7 +69,7 @@ msgid "XIOS DS M3"
 msgstr ""
 
 msgctxt "#32014"
-msgid "XIOS DS M1 *Experimental*"
+msgid "XIOS DS M1"
 msgstr ""
 
 msgctxt "#32015"
@@ -97,7 +97,7 @@ msgid "File integrity check pass."
 msgstr ""
 
 msgctxt "#32021"
-msgid "Choose Storage location for firmware download:"
+msgid "Storage location for firmware download:"
 msgstr ""
 
 msgctxt "#32022"
@@ -109,11 +109,7 @@ msgid "USB"
 msgstr ""
 
 msgctxt "#32024"
-msgid "Warning: Recommend the use of SDCard for external storage.  If you must use a USB device no other USB device then the one you plan on using to store the firmware download should be connected to your Pivos device."
-msgstr ""
-
-msgctxt "#32025"
-msgid "USB"
+msgid "Cache"
 msgstr ""
 
 # Error messages
