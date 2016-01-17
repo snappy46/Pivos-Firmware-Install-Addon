@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.module.firmware.update" name="Firmware Install" version="1.0.0" provider-name="snappy46">
+<addon id="script.module.firmware.update" name="Firmware Install" version="1.1.0" provider-name="snappy46">
     <requires>
 		<import addon="xbmc.python" version="2.14.0"/>
 <!--		<import addon="script.module.mctools" optional="false"/>-->
@@ -11,7 +11,8 @@
 	<extension point="xbmc.addon.metadata">
 		<platform>all</platform>
 		<summary lang="en">Pivos XIOS firmware install</summary>
-		<description lang="en">This addon provide for automatic firmware update for Pivos devices running TOFULinux OS 080115 or later.</description>
+		<description lang="en">This addon provide for firmware update of Pivos devices running TOFULinux OS 080115 or later.</description>
+		<description lang="fr">Cet addiciel fournir la mise à jour du firmware aux appareils Pivos avec TOFULinux OS 080115 ou plus tard.</description>
 		<license>GNU General Public License, v2</license>
 		<language></language>
 		<forum></forum>

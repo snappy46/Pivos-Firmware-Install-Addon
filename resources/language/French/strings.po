@@ -13,52 +13,52 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
+"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#32001"
 msgid "Choose firmware to install"
-msgstr ""
+msgstr "Choisissez le micrologiciel à installer"
 
 msgctxt "#32002"
 msgid "Firmware Update"
-msgstr ""
+msgstr "Mise à jour du micrologiciel"
 
 msgctxt "#32003"
 msgid "     Revision Date: "
-msgstr ""
+msgstr "     Date de révision: "
 
 msgctxt "#32004"
 msgid "Firmware download"
-msgstr ""
+msgstr "Téléchargement du micrologiciel"
 
 msgctxt "#32005"
 msgid "Downloading File"
-msgstr ""
+msgstr "Téléchargement de fichiers"
 
 msgctxt "#32006"
 msgid "\n\n Install this firmware?"
-msgstr ""
+msgstr "\n\n Installer ce micrologiciel?"
 
 msgctxt "#32007"
 msgid "Confirm firmware update"
-msgstr ""
+msgstr "Confirmez mise à jour micrologiciel."
 
 msgctxt "#32008"
 msgid "This will delete all your current kodi setup and data.  \n\nAre you sure you wish to continue?"
-msgstr ""
+msgstr "Cette opération va supprimer toute votre configuration et les données de Kodi actuelle.  \n\nÊtes-vous sûr de vouloir continuer?"
 
 msgctxt "#32009"
 msgid "Ready to install"
-msgstr ""
+msgstr "Prêt à installer"
 
 msgctxt "#32010"
 msgid "Pivos device selected:"
-msgstr ""
+msgstr "Appareil Pivos choisi:"
 
 msgctxt "#32011"
 msgid "Factory Reset:"
-msgstr ""
+msgstr "Retour à la configuration initiale:"
 
 msgctxt "#32012"
 msgid "XIOS XS"
@@ -74,69 +74,73 @@ msgstr ""
 
 msgctxt "#32015"
 msgid "None"
-msgstr ""
+msgstr "Aucun"
 
 msgctxt "#32016"
-msgid "rebooting Pivos player..."
-msgstr ""
+msgid "Rebooting Pivos player..."
+msgstr "Redémarrage de l'appareil Pivos ..."
 
 msgctxt "#32017"
 msgid "Calculating and verifying file MD5 Sum"
-msgstr ""
+msgstr "Calculer MD5 et vérifier les fichiers télécharger."
 
 msgctxt "#32018"
 msgid "Percentage complete: "
-msgstr ""
+msgstr "Pourcentage complèter: "
 
 msgctxt "#32019"
 msgid "File Check"
-msgstr ""
+msgstr "Vérifier les fichiers"
 
 msgctxt "#32020"
 msgid "File integrity check pass."
-msgstr ""
+msgstr "Vérification de l'intégrité des fichiers pass."
 
 msgctxt "#32021"
-msgid "Choose Storage location for firmware download:"
-msgstr ""
+msgid "Storage location for firmware download:"
+msgstr "Emplacement pour le téléchargement du micrologiciel:"
 
 msgctxt "#32022"
 msgid "SDCard"
-msgstr ""
+msgstr "Carte SD"
 
 msgctxt "#32023"
 msgid "USB"
+msgstr ""
+
+msgctxt "#32024"
+msgid "Cache"
 msgstr ""
 
 # Error messages
 
 msgctxt "#32030"
 msgid "Firmware list download failed.\n\nMake sure your device is connected to the internet."
-msgstr ""
+msgstr "La liste de téléchargement du micrologiciel a échoué.\n\nAssurez-vous que votre appareil est connecté à l'Internet."
 
 msgctxt "#32031"
 msgid "Download canceled"
-msgstr ""
+msgstr "Téléchargement annulé"
 
 msgctxt "#32032"
 msgid "Unable to make cache directory"
-msgstr ""
+msgstr "Impossible de créer le répertoire de cache"
 
 msgctxt "#32033"
 msgid "Error Firmware install process could not be continued"
-msgstr ""
+msgstr "Erreur dans le processus d'installation. Installation ne pouvait pas être poursuivi."
 
 msgctxt "#32034"
 msgid "Unable to create cache mount"
-msgstr ""
+msgstr "Impossible de créer le montage du cache"
 
 msgctxt "#32035"
-msgid "Please select a device in the configuration menu (settings)."
-msgstr ""
+msgid "Please select a device in the configuration menu (settings) before using."
+msgstr "S'il vous plaît sélectionner un appareil dans le menu de configuration (paramètres) avant l'utilisation."
 
 msgctxt "#32036"
 msgid "Failed file integrity check.\n\nPlease try again.!!!"
-msgstr ""
+msgstr "Échec fichier de contrôle d'intégrité. \n\nVeuillez réessayer. !!!"
 
 
 

@@ -93,6 +93,7 @@ def _pbhook(numblocks, blocksize, filesize, url=None, dp=None):
         dp.close()
         os.remove(firmwareDownloadLocation())
         messageOK(langString(32031))
+        quit()
 
 
 def md5ErrorMessage():

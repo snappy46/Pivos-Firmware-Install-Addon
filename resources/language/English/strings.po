@@ -77,7 +77,7 @@ msgid "None"
 msgstr ""
 
 msgctxt "#32016"
-msgid "rebooting Pivos player..."
+msgid "Rebooting Pivos player..."
 msgstr ""
 
 msgctxt "#32017"
