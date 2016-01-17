@@ -175,7 +175,6 @@ def firmwareUpdate(message):
 
         if (runscript):
             downloadFile = firmwareDownloadLocation()
-            messageOK(downloadFile)
             DownloaderClass(linkArray[ret], downloadFile)
             if md5(downloadFile) <> md5Array[ret]:
                 md5ErrorMessage()
@@ -199,6 +198,7 @@ def checkHardware():
         return 'http://update.pivosgroup.com/linux/m1/update.xml'
     else:
         messageOK(langString(32035))
+        Addon().openSettings()
         quit()
 
 
