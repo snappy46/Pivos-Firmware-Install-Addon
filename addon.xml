@@ -12,7 +12,7 @@
 		<platform>all</platform>
 		<summary lang="en">Pivos XIOS firmware install</summary>
 		<description lang="en">This addon provide for firmware update of Pivos devices running TOFULinux OS 080115 or later.</description>
-		<description lang="fr">Cet addiciel fournir la mise à jour du firmware aux appareils Pivos avec TOFULinux OS 080115 ou plus tard.</description>
+		<description lang="fr">Cet addiciel permet la mise à jour du micrologiciel des appareils Pivos avec TOFULinux OS 080115 ou plus tard.</description>
 		<license>GNU General Public License, v2</license>
 		<language></language>
 		<forum></forum>
