@@ -45,7 +45,7 @@ msgid "Confirm firmware update"
 msgstr ""
 
 msgctxt "#32008"
-msgid "This will delete all your current kodi setup and data.  \n\nAre you sure you wish to continue?"
+msgid "You have selected factory reset in the settings. This will delete all your current kodi setup and user data.  \n\nAre you sure you wish to continue?"
 msgstr ""
 
 msgctxt "#32009"
@@ -119,7 +119,7 @@ msgid "Firmware list download failed.\n\nMake sure your device is connected to t
 msgstr ""
 
 msgctxt "#32031"
-msgid "Download canceled"
+msgid "Firmware download canceled"
 msgstr ""
 
 msgctxt "#32032"

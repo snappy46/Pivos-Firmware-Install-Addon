@@ -45,8 +45,8 @@ msgid "Confirm firmware update"
 msgstr "Confirmez mise à jour micrologiciel."
 
 msgctxt "#32008"
-msgid "This will delete all your current kodi setup and data.  \n\nAre you sure you wish to continue?"
-msgstr "Cette opération va supprimer toute votre configuration et les données de Kodi actuelle.  \n\nÊtes-vous sûr de vouloir continuer?"
+msgid "You have selected factory reset in the settings. This will delete all your current kodi setup and user data.  \n\nAre you sure you wish to continue?"
+msgstr "Vous avez sélectionné une réinitialisation initial dans les paramètres. Cette opération va supprimer toute votre configuration et les données de Kodi actuelle.  Êtes-vous sûr de vouloir continuer?"
 
 msgctxt "#32009"
 msgid "Ready to install"
@@ -119,8 +119,8 @@ msgid "Firmware list download failed.\n\nMake sure your device is connected to t
 msgstr "La liste de téléchargement du micrologiciel a échoué.\n\nAssurez-vous que votre appareil est connecté à l'Internet."
 
 msgctxt "#32031"
-msgid "Download canceled"
-msgstr "Téléchargement annulé"
+msgid "Firmware download canceled"
+msgstr "Téléchargement du micrologiciel annulé"
 
 msgctxt "#32032"
 msgid "Unable to make cache directory"

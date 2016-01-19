@@ -171,21 +171,20 @@ def firmwareUpdate(message):
     message = message + langString(32006)
     runscript = dialog.yesno(langString(32002), message)
 
-    if (runscript):
+    if (runscript and  Addon().getSetting('factoryReset') == 'true'):
         runscript = dialog.yesno(langString(32007), langString(32008))
 
-        if (runscript):
-            downloadFile = firmwareDownloadLocation()
-            DownloaderClass(linkArray[ret], downloadFile)
-            if md5(downloadFile) <> md5Array[ret]:
-                md5ErrorMessage()
-                pass
-            else:
-                dialog = xbmcgui.Dialog()
-                dialog.notification(langString(32019), langString(32020), icon='', time=3000)
-            recoverCommand()
-        else: quit()
+    if (runscript):
+        downloadFile = firmwareDownloadLocation()
+        DownloaderClass(linkArray[ret], downloadFile)
+        if md5(downloadFile) <> md5Array[ret]:
+            md5ErrorMessage()
+        else:
+            dialog = xbmcgui.Dialog()
+            dialog.notification(langString(32019), langString(32020), icon='', time=3000)
+        recoverCommand()
     else: quit()
+
 
 
 def checkHardware():
