@@ -40,7 +40,7 @@ def findStorageBasedOnDevice():
     elif device == '2':
         return Addon().getSetting('DSM3storage')
     elif device == '3':
-        return Addon().getSetting('DSM1storage')
+        return Addon().getSetting('DSM1storage') + 1
 
 
 def downloadFirmwareList(source):
