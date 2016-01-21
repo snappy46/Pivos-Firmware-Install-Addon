@@ -40,7 +40,7 @@ def findStorageBasedOnDevice():
     elif device == '2':
         return Addon().getSetting('DSM3storage')
     elif device == '3':
-        return Addon().getSetting('DSM1storage') + 1
+        return str(int(Addon().getSetting('DSM1storage')) + 1)
 
 
 def downloadFirmwareList(source):
@@ -121,7 +121,7 @@ def firmwareLocationOnReboot():
 
 def mountLocation(dev):
     # This function will return the mount location of dev
-    p = os.popen("df | grep '" + dev + "' | grep -oE '[^ ]+$'")
+    p = os.popen("df | grep '" + dev + "' | grep -oE '[^ ]+$' | head -n1")
     return p.read().replace("\n", "")
 
 
