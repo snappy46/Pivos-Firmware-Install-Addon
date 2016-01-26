@@ -211,7 +211,10 @@ downloadFirmwareList(imageListLink)
 # display firmware list in a dialogue for selection. ret = position of selection
 ret = xbmcgui.Dialog().select(langString(32001), firmwareArray)  #
 
-# proceed with firmware installation based on firmware selected.
-firmwareUpdate(firmwareArray[ret])
+if ret == -1: #no selection was made just quit
+    quit()
+else:
+    # proceed with firmware installation based on firmware selected.
+    firmwareUpdate(firmwareArray[ret])
 
 quit()
